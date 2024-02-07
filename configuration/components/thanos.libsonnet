@@ -1,5 +1,6 @@
 local t = (import 'kube-thanos/thanos.libsonnet');
 local rc = (import 'thanos-receive-controller/thanos-receive-controller.libsonnet');
+local overwrites = (import './thanos-overwrites.libsonnet');
 local memcached = (import 'memcached.libsonnet');
 
 // These are the defaults for this components configuration.
@@ -363,4 +364,4 @@ function(params) {
     for name in std.objectFields(thanos.receiveController)
     if thanos.receiveController[name] != null
   },
-}
+} + overwrites
