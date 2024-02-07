@@ -21,6 +21,7 @@ local defaults = {
     tenants: [],
   }],
   stores+: {
+    maxItemSize: '10MiB',
     shards: 1,
     volumeClaimTemplate: {
       spec: {
@@ -127,6 +128,7 @@ local defaults = {
 
   queryFrontend: {
     replicas: 1,
+    maxItemSize: '10MiB',
   },
 
   queryFrontendCache: defaults.memcached {
@@ -232,7 +234,6 @@ function(params) {
     objectStorageConfig: thanos.config.objectStorageConfig,
     replicas: 1,
     logLevel: 'info',
-    maxItemSize: '10MiB',
     local memcachedDefaults = {
       timeout: '2s',
       max_idle_connections: 1000,
@@ -294,7 +295,6 @@ function(params) {
     splitInterval: '24h',
     maxRetries: 0,
     logQueriesLongerThan: '5s',
-    maxItemSize: '10MiB',
     queryRangeCache: {
       type: 'memcached',
       config+: {
